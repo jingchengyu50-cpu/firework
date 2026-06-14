@@ -1,28 +1,45 @@
 <!DOCTYPE html>
-<!--
-Modified by Jingcheng for personal customized fireworks page.
-Based on Firework_Simulator by NianBroken (Apache-2.0).
-Mobile-first for WeChat / iOS Safari / Android Chrome.
--->
 <html lang="zh-CN">
 	<head>
 		<meta charset="UTF-8" />
-		<title>烟花</title>
+		<title>Mobile Debug</title>
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
 		/>
-		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		<meta name="format-detection" content="telephone=no" />
-		<meta name="theme-color" content="#050714" />
-		<link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
-		<link rel="icon" type="image/png" href="./images/favicon.png" />
-		<link rel="apple-touch-icon-precomposed" href="./images/favicon.png" />
-		<link rel="stylesheet" href="./css/style.css" />
+		<!-- <link rel="stylesheet" href="./css/style.css" /> -->
+		<script>
+			window.onerror = function (msg, url, line, col, error) {
+				document.body.innerHTML =
+					'<h1 style="color:red">JS ERROR</h1>' +
+					'<pre>' +
+					msg +
+					'</pre>';
+			};
+		</script>
 	</head>
 	<body>
+		<div
+			id="debug"
+			style="
+				position: fixed;
+				top: 0;
+				left: 0;
+				background: red;
+				color: white;
+				z-index: 999999;
+				padding: 10px;
+				font-size: 20px;
+			"
+		>
+			PAGE LOADED
+		</div>
+
+		<h1>Mobile Test Success</h1>
+
+		<!--
+		DEBUG MODE: fireworks / canvas / audio disabled
+
 		<div class="container">
 			<div class="stage-container">
 				<div class="canvas-container">
@@ -30,24 +47,6 @@ Mobile-first for WeChat / iOS Safari / Android Chrome.
 					<canvas id="trails-canvas"></canvas>
 					<canvas id="main-canvas"></canvas>
 				</div>
-
-				<div class="hero-overlay" id="hero-overlay">
-					<p class="hero-title">今晚的烟花，只为你点亮。</p>
-					<p class="hero-hint">点击夜空，放一束烟花</p>
-				</div>
-
-				<div class="minimal-controls">
-					<button class="ctrl-btn" type="button" id="btn-auto">自动烟花：开</button>
-					<button class="ctrl-btn" type="button" id="btn-clear">清空</button>
-				</div>
-			</div>
-
-			<div class="license-credits" aria-hidden="true">
-				<p>
-					Copyright &copy; 2021 - <span class="copyright-year"></span>
-					<a target="_blank" href="https://www.nianbroken.top/" rel="noopener">碎念_Nian</a>
-					&middot; Modified by Jingcheng
-				</p>
 			</div>
 		</div>
 
@@ -65,5 +64,6 @@ Mobile-first for WeChat / iOS Safari / Android Chrome.
 		<script src="./js/fireworks/interaction.js"></script>
 		<script src="./js/fireworks/simulation.js"></script>
 		<script src="./js/fireworks/engine.js"></script>
+		-->
 	</body>
 </html>
