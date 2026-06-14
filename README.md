@@ -20,7 +20,6 @@ python -m http.server 8080
 | 文件 | 内容 |
 |------|------|
 | `js/app/config.js` → `mobile` | 手机性能：粒子数、Shell 数、点击节流、自动间隔 |
-| `js/app/config.js` → `audio` | 音效音量、并发上限 |
 | `js/app/config.js` → `overlay` | 首页文案与淡出时间 |
 
 ## 重新提交 GitHub

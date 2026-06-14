@@ -9,11 +9,6 @@ var isUpdatingSpeed = false;
 var currentFrame = 0;
 var speedBarOpacity = 0;
 var autoLaunchTime = 800;
-var isAutoLaunchSound = false;
-
-function registerUserInteraction() {
-	soundManager.registerInteraction();
-}
 
 function isUiControlTarget(target) {
 	if (window.FireworksMinimalUI && FireworksMinimalUI.isControlTarget(target)) {
@@ -33,7 +28,6 @@ function handlePointerStart(event) {
 	}
 
 	if (event.onCanvas && fireworksPerformance.canClickLaunch()) {
-		isAutoLaunchSound = false;
 		launchShellFromConfig(event);
 	}
 }
@@ -101,11 +95,7 @@ function updateGlobals(timeStep, lag) {
 	if (store.state.config.autoLaunch) {
 		autoLaunchTime -= timeStep;
 		if (autoLaunchTime <= 0 && fireworksPerformance.canLaunchShell()) {
-			isAutoLaunchSound = true;
-			soundManager.setAutoMode(true);
 			var sequenceDelay = startSequence();
-			soundManager.setAutoMode(false);
-			isAutoLaunchSound = false;
 			autoLaunchTime = Math.max(fireworksPerformance.limits.autoLaunchMinIntervalMs, sequenceDelay);
 		}
 	}

@@ -8,7 +8,7 @@ Mobile-first configuration
 (function initFireworksAppConfig(global) {
 	var config = {
 		storageKey: "jc_fireworks_data",
-		storageVersion: "1.1",
+		storageVersion: "1.2",
 
 		overlay: Object.freeze({
 			title: "今晚的烟花，只为你点亮。",
@@ -17,7 +17,6 @@ Mobile-first configuration
 			fadeDurationMs: 1800,
 		}),
 
-		/* 手机端性能参数 —— 主要调这里 */
 		mobile: Object.freeze({
 			maxStars: 700,
 			maxSparks: 900,
@@ -38,14 +37,6 @@ Mobile-first configuration
 			clickThrottleMs: 250,
 			autoLaunchMinIntervalMs: 1200,
 			autoLaunchDelayMultiplier: 2.8,
-		}),
-
-		audio: Object.freeze({
-			masterVolume: 0.25,
-			launchVolume: 0.08,
-			explosionVolume: 0.18,
-			autoVolumeScale: 0.55,
-			maxConcurrentSounds: 4,
 		}),
 
 		defaultWords: Object.freeze([]),
@@ -83,7 +74,6 @@ Mobile-first configuration
 			heroOverlay: "#hero-overlay",
 			btnClear: "#btn-clear",
 			btnAuto: "#btn-auto",
-			btnSound: "#btn-sound",
 			copyrightYear: ".copyright-year",
 		}),
 	};

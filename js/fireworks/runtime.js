@@ -150,28 +150,6 @@ function togglePause(toggle) {
 	}
 }
 
-function toggleSound(toggle) {
-	if (!soundManager.isSupported()) {
-		return;
-	}
-
-	const nextValue = typeof toggle === "boolean" ? toggle : !store.state.soundEnabled;
-
-	if (nextValue) {
-		soundManager.enable().then((ok) => {
-			if (!ok) {
-				return;
-			}
-			store.setState({ soundEnabled: true });
-			soundManager.resumeAll();
-		});
-		return;
-	}
-
-	soundManager.disable();
-	store.setState({ soundEnabled: false });
-}
-
 function toggleAutoLaunch(toggle) {
 	const nextValue = typeof toggle === "boolean" ? toggle : !store.state.config.autoLaunch;
 	updateConfig({ autoLaunch: nextValue });
@@ -211,8 +189,6 @@ function configDidUpdate() {
 }
 
 const isRunning = (state = store.state) => !state.paused;
-const soundEnabledSelector = (state = store.state) => state.soundEnabled;
-const canPlaySoundSelector = (state = store.state) => isRunning(state) && soundEnabledSelector(state);
 const qualitySelector = () => Number(store.state.config.quality);
 const shellNameSelector = () => store.state.config.shell;
 const shellSizeSelector = () => Number(store.state.config.size);
@@ -221,20 +197,7 @@ const skyLightingSelector = () => Number(store.state.config.skyLighting);
 const scaleFactorSelector = () => store.state.config.scaleFactor;
 
 function handleStateChange(state, previousState) {
-	renderControls(state, appNodes, soundManager.isSupported());
-
-	const currentCanPlaySound = canPlaySoundSelector(state);
-	const previousCanPlaySound = canPlaySoundSelector(previousState);
-	if (currentCanPlaySound === previousCanPlaySound) {
-		return;
-	}
-
-	if (currentCanPlaySound) {
-		soundManager.resumeAll();
-		return;
-	}
-
-	soundManager.pauseAll();
+	renderControls(state, appNodes);
 }
 
 function getCodeDefaultBackground() {
@@ -276,8 +239,6 @@ function clearFireworks() {
 }
 
 document.addEventListener("visibilitychange", () => {
-	soundManager.setPageHidden(document.hidden);
-
 	if (document.hidden) {
 		Ticker.pause();
 		if (isRunning()) {
@@ -299,8 +260,5 @@ bindMinimalControls({
 	onClear: clearFireworks,
 	onToggleAuto: function onToggleAuto() {
 		toggleAutoLaunch();
-	},
-	onToggleSound: function onToggleSound() {
-		toggleSound();
 	},
 });

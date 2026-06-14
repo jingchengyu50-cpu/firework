@@ -20,7 +20,7 @@ function init() {
 
 	applyOverlayText(appNodes);
 	scheduleOverlayFade(appNodes);
-	renderControls(store.state, appNodes, soundManager.isSupported());
+	renderControls(store.state, appNodes);
 	configDidUpdate();
 	applyResolvedBackground();
 	handleResize();

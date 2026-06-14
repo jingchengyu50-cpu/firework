@@ -128,7 +128,6 @@ Mobile-first defaults + safe localStorage
 	function createDefaultState(runtime) {
 		return {
 			paused: true,
-			soundEnabled: false,
 			menuOpen: false,
 			openHelpTopic: null,
 			fullscreen: false,
@@ -152,7 +151,6 @@ Mobile-first defaults + safe localStorage
 
 		var nextState = {
 			paused: defaultState.paused,
-			soundEnabled: defaultState.soundEnabled,
 			menuOpen: defaultState.menuOpen,
 			openHelpTopic: defaultState.openHelpTopic,
 			fullscreen: defaultState.fullscreen,
@@ -199,7 +197,6 @@ Mobile-first defaults + safe localStorage
 			if (parsedState.schemaVersion === appConfig.storageVersion || parsedState.schemaVersion === "1.0") {
 				return {
 					paused: defaultState.paused,
-					soundEnabled: defaultState.soundEnabled,
 					menuOpen: false,
 					openHelpTopic: null,
 					fullscreen: false,

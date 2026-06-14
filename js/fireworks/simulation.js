@@ -339,7 +339,6 @@ function floralEffect(star) {
 		Star.add(star.x, star.y, star.color, angle, speedMultiplier * 2.4, 1000 + Math.random() * 300, star.speedX, star.speedY);
 	});
 	BurstFlash.add(star.x, star.y, 46);
-	soundManager.playExplosionSound(0.22);
 }
 
 function fallingLeavesEffect(star) {
@@ -362,7 +361,6 @@ function fallingLeavesEffect(star) {
 		newStar.sparkLifeVariation = 3.2;
 	});
 	BurstFlash.add(star.x, star.y, 46);
-	soundManager.playExplosionSound(0.22);
 }
 
 function crackleEffect(star) {
@@ -444,7 +442,6 @@ class Shell {
 		}
 
 		comet.onDeath = (activeComet) => this.burst(activeComet.x, activeComet.y);
-		soundManager.playLaunchSound();
 	}
 
 	burst(x, y) {
@@ -457,24 +454,15 @@ class Shell {
 		let sparkSpeed;
 		let sparkLife;
 		let sparkLifeVariation = 0.25;
-		let playedDeathSound = false;
 
 		if (this.crossette) {
 			onDeath = (star) => {
-				if (!playedDeathSound) {
-					soundManager.playSound("crackleSmall");
-					playedDeathSound = true;
-				}
 				crossetteEffect(star);
 			};
 		}
 
 		if (this.crackle) {
 			onDeath = (star) => {
-				if (!playedDeathSound) {
-					soundManager.playSound("crackle");
-					playedDeathSound = true;
-				}
 				crackleEffect(star);
 			};
 		}
@@ -681,13 +669,6 @@ class Shell {
 		}
 
 		BurstFlash.add(x, y, this.spreadSize / 4);
-
-		if (this.comet) {
-			const maxDiff = 2;
-			const sizeDifferenceFromMax = Math.min(maxDiff, shellSizeSelector() - this.shellSize);
-			const soundScale = (1 - sizeDifferenceFromMax / maxDiff) * 0.3 + 0.7;
-			soundManager.playExplosionSound(soundScale);
-		}
 	}
 }
 
